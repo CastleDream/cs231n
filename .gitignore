@@ -1,0 +1,9 @@
+.DS_Store
+.ipynb_checkpoints
+.vscode/settings.json
+assignment/assignment1
+assignment/assignment2
+assignment/assignment3
+datasets/cifar-10-batches-py
+*.cpython-37.pyc
+__pycache__
