@@ -45,7 +45,7 @@ rm cifar-10-python.tar.gz
 + **Q2: Training a Support Vector Machine**(25分)，在文件`svm.ipynb`中
 + **Q3: Implement a Softmax classifier**（20分），在文件`softmax.ipynb`中
 + **Q4: Two-Layer Neural Network**(25分)，在文件`two_layer_net.ipynb`中
-+ **Q5: Higher Level Representations: Image Features**(10分)，在文件`two_layer_net.ipynb`中
++ **Q5: Higher Level Representations: Image Features**(10分)，在文件`features.ipynb`中
 + **Q6: Cool Bonus: Do something extra!**(+10分)，额外探索，附加给10分
 
 如果不想使用`jupyter`，在`cs231n_2017/assignment/assignment1/cs231n/classifiers`中也有对应的`.py`文件可以选择

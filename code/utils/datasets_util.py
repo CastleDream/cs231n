@@ -52,6 +52,7 @@ def load_batch(file):
     X = pickleDict['data']
     Y = pickleDict['labels']
     # must be np.uint8, if use np.int8, then image will has negative value and show wrong
+    # notice this type， before processing calculating, change uint8 type to float to guarantee range valid
     X = X.reshape(10000, 3, 32, 32).transpose(0, 2, 3, 1).astype(np.uint8)
     Y = np.array(Y)
     return X, Y
@@ -97,7 +98,7 @@ def get_CIFAR10_data(train_num=49000, val_num=1000, test_num=10000, normalize=1)
       'X_test': X_test, 'y_test': y_test,
     }
     """
-    root_path = "7.CV/cs231n_2017/datasets/cifar-10-batches-py"
+    root_path = "../../datasets/cifar-10-batches-py"
     x_train, y_train, X_test, Y_test = load_cifar10(root_path)
 
     X_val = x_train[train_num:train_num+val_num]
@@ -150,12 +151,12 @@ def get_CIFAR10_data(train_num=49000, val_num=1000, test_num=10000, normalize=1)
 if __name__ == "__main__":
     # test unpickle
     labels = unpickle(
-        "7.CV/cs231n_2017/datasets/cifar-10-batches-py/batches.meta")["label_names"]
+        "../..datasets/cifar-10-batches-py/batches.meta")["label_names"]
     print(labels)
     # ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
 
     # test load_batch
-    test_batch = "7.CV/cs231n_2017/datasets/cifar-10-batches-py/data_batch_1"
+    test_batch = "../../datasets/cifar-10-batches-py/data_batch_1"
     X, Y = load_batch(test_batch)
     print(X[1].shape, X[1][:, 1, 1])
     print(Y[1])
@@ -165,7 +166,7 @@ if __name__ == "__main__":
     # plt.show()
 
     # test load_cifar10
-    root_path = "7.CV/cs231n_2017/datasets/cifar-10-batches-py"
+    root_path = "../../datasets/cifar-10-batches-py"
     x_train, y_train, x_test, y_test = load_cifar10(root_path)
     print(f"x_train shape: {x_train.shape},y_train shape: {y_train.shape} ")
     print(f"x_test shape: {x_test.shape},y_test shape: {y_test.shape} ")

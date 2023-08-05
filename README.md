@@ -29,6 +29,7 @@
     + <https://github.com/JimLee4530/CS231n/tree/master>
     + <https://github.com/liben2018/cs231n-2018-Chinese.github.io>
     + <https://github.com/albertpumarola/deep-learning-notes/tree/master>: 合着外国人做笔记都是直接latex，学完直接就是一本书呗。。。卷死
+    + <https://github.com/martinkersner/cs231n/tree/master>
     + 很明显没有吴恩达那个课程笔记那么火。。。
 + 关于课上说的讲义资料（notes）：
     + 2017年的可以看这个：<https://github.com/JimLee4530/CS231n/tree/master/Notes/CS231n_Notes>
