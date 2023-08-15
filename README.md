@@ -24,6 +24,7 @@
     + assignment1~3每个都有相应的作业样本demo的zip文件，可以下载下来看看
     + **2017年的cs231n的index.html**: <https://github.com/cs231n/cs231n.github.io/blob/cf444c2cb666f9172f69560ec099c9ddac697516/index.html>
 + 作业/笔记参考：
+    + ✅<https://github.com/amanchadha/stanford-cs231n-assignments-2020/tree/master>
     + <https://github.com/oubindo/cs231n-cnn>
         + [cs231n学习有疑惑？ 看这一篇或许能搞定](https://www.jianshu.com/p/5e42809ffedf)
     + <https://github.com/JimLee4530/CS231n/tree/master>
@@ -52,7 +53,13 @@ PPT源文件下载位置：<http://web.stanford.edu/class/cs231a/syllabus.html>
 + B站上(大学课堂)：<https://www.bilibili.com/video/BV1JE411w7Ub>
 + 对应github上别人的笔记：<https://github.com/fengdu78/Coursera-ML-AndrewNg-Notes>
 
-## 2.4 大牛
+## 2.4 Technical Foundations of Digital Production II
++ 有计算机图形学，OpenGL的使用
++ <https://people.computing.clemson.edu/~dhouse/courses/401/>
++ <https://people.computing.clemson.edu/~dhouse/courses/401/notes/>
+
+
+## 2.5 大牛
 + (吴恩达)神经网络和深度学习：<https://study.163.com/instructor/1029176012.htm>
 + Lecun：<https://cds.nyu.edu/deep-learning/>
 + 刘建平：<https://www.cnblogs.com/pinard/?page=14>，这个人和冠军如何练成的，两个博客大佬啊。

@@ -105,6 +105,8 @@ def get_CIFAR10_data(train_num=49000, val_num=1000, test_num=10000, normalize=1)
     Y_val = y_train[train_num:train_num+val_num]
     X_train = x_train[:train_num]
     Y_train = y_train[:train_num]
+    # https://stats.stackexchange.com/questions/211436/why-normalize-images-by-subtracting-datasets-image-mean-instead-of-the-current
+    # 关于normalize采用图像平均还是通道平均的讨论
     if normalize == 1:
         mean_image = np.mean(x_train, axis=0)
         std = np.std(x_train, axis=0)

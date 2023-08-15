@@ -122,12 +122,17 @@ class KNearestNeighbor(object):
         sy = np.transpose(np.sum(self.X_train**2, axis=1,
                           keepdims=True, dtype=float))
         dists = np.sqrt(-2 * X.dot(self.X_train.T) + sx + sy)
+        # 使用二重循环，可以看到， √(a-b)^2 从单个元素的平方差，变成多个元素的平方差
+        # dists[i, j] = np.linalg.norm(self.X_train[j]-X[i], ord=None)
+        # 多个展开分别求每项的值，再相加，其实就等于每个元素的单项求值
 
+        # 写法2
         # a = -2 * np.dot(X, self.X_train.T)
         # b = np.sum(np.square(self.X_train), axis=1)
         # c = np.transpose([np.sum(np.square(X), axis=1)])
         # dists = np.sqrt(a + b + c)
 
+        # 方法2 会内存溢出
         # X = X[:, np.newaxis, :]
         # dists = np.linalg.norm(X-self.X_train, axis=2)
         return dists
