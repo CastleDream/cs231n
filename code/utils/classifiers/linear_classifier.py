@@ -22,7 +22,7 @@ class LinearClassifier(object):
           means that X[i] has label 0 <= c < C for C classes.
         - learning_rate: (float) learning rate for optimization.
         - reg: (float) regularization strength.
-        - num_iters: (integer) number of steps to take when optimizing
+        - num_iters: (integer) number of steps to take when optimizing 优化多少轮 类似 epoch
         - batch_size: (integer) number of training examples to use at each step.
         - verbose: (boolean) If true, print progress during optimization.
 
@@ -31,16 +31,17 @@ class LinearClassifier(object):
         """
         num_train, dim = X.shape
         # assume y takes values 0...K-1 where K is number of classes
-        num_classes = np.max(y) + 1
+        num_classes = np.max(y) + 1  # np.max([1,2,3])=3
         if self.W is None:
-            # lazily initialize W
+            # lazily initialize W 随机初始化W，用的是均匀分布初始化的
             self.W = 0.001 * np.random.randn(dim, num_classes)
 
         # Run stochastic gradient descent to optimize W
         loss_history = []
         for it in range(num_iters):
-            X_batch = None
-            y_batch = None
+            batch_index = np.random.choice(num_train, batch_size, replace=True)
+            X_batch = X[batch_index]
+            y_batch = y[batch_index]
 
             #########################################################################
             # TODO:                                                                 #
@@ -63,14 +64,7 @@ class LinearClassifier(object):
             loss_history.append(loss)
 
             # perform parameter update
-            #########################################################################
-            # TODO:                                                                 #
-            # Update the weights using the gradient and the learning rate.          #
-            #########################################################################
-            pass
-            #########################################################################
-            #                       END OF YOUR CODE                                #
-            #########################################################################
+            self.W -= grad*learning_rate
 
             if verbose and it % 100 == 0:
                 print('iteration %d / %d: loss %f' % (it, num_iters, loss))
@@ -92,6 +86,7 @@ class LinearClassifier(object):
           class.
         """
         y_pred = np.zeros(X.shape[0])
+        y_pred = np.argmax(X.dot(self.W), axis=1)
         ###########################################################################
         # TODO:                                                                   #
         # Implement this method. Store the predicted labels in y_pred.            #
@@ -117,7 +112,6 @@ class LinearClassifier(object):
         - loss as a single float
         - gradient with respect to self.W; an array of the same shape as W
         """
-        pass
 
 
 class LinearSVM(LinearClassifier):

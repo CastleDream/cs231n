@@ -73,21 +73,37 @@ def svm_loss_vectorized(W, X, y, reg):
     Structured SVM loss function, vectorized implementation.
 
     Inputs and outputs are the same as svm_loss_naive.
+    - W: A numpy array of shape (D, C) containing weights.
+    - X: A numpy array of shape (N, D) containing a minibatch of data. like: x_train
+    - y: A numpy array of shape (N,) containing training labels; y[i] = c means
+      that X[i] has label c, where 0 <= c < C. like: y_train
+    - reg: (float) regularization strength 正则项强度, 这里默认使用L2正则
     """
     loss = 0.0
     dW = np.zeros(W.shape)  # initialize the gradient as zero
 
-    scores = X.dot(W)  # 矩阵乘法
-    correct_class_score = scores[y]
     #############################################################################
     # TODO:                                                                     #
     # Implement a vectorized version of the structured SVM loss, storing the    #
     # result in loss.                                                           #
     #############################################################################
-    pass
-    #############################################################################
-    #                             END OF YOUR CODE                              #
-    #############################################################################
+
+    num_train = X.shape[0]
+
+    scores = X.dot(W)  # 矩阵乘法
+    # without reshape, correct_class_score.shape is (500, )
+    # will error in scores - correct_class_score, can not broadcast (500,10)-(500,)
+    correct_class_score = scores[range(num_train), y].reshape(-1, 1)
+    # print(f"correct_class_score.shape: {correct_class_score.shape}")
+
+    # margin = scores-correct_class_score+1.0
+    # loss = np.sum(margin[margin > 0])/num_train + 0.5*reg * np.sum(W * W)
+    # 考虑到计算dw，所以选用下面这种写法
+    margin = np.maximum(0, scores - correct_class_score + 1)  # note delta = 1
+    margin[np.arange(num_train), y] = 0
+    loss = np.sum(margin)/num_train + 0.5*reg * np.sum(W * W)
+
+    # W:(D,C),Score:(N,C) margin:(N,C)
 
     #############################################################################
     # TODO:                                                                     #
@@ -98,9 +114,10 @@ def svm_loss_vectorized(W, X, y, reg):
     # to reuse some of the intermediate values that you used to compute the     #
     # loss.                                                                     #
     #############################################################################
-    pass
-    #############################################################################
-    #                             END OF YOUR CODE                              #
-    #############################################################################
-
+    coeff_mat = np.zeros_like(margin)  # margin.shape = score.shape
+    coeff_mat[margin > 0] = 1
+    coeff_mat[np.arange(num_train), y] = -np.sum(coeff_mat, axis=1)
+    # coeff_mat[np.arange(num_train), y] = -9
+    # 不一定每一个都是9个1,1个-9，有可能有些在max取值是0，就没有对w求导了
+    dW = X.T.dot(coeff_mat)/num_train+reg*W
     return loss, dW
