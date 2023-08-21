@@ -9,3 +9,6 @@
 └── utils # 作业中需要使用到的utils代码
 
 ```
+参考的Github项目：
++ <https://github.com/amanchadha/stanford-cs231n-assignments-2020/tree/master>
++ <https://github.com/oubindo/cs231n-cnn/tree/master>
