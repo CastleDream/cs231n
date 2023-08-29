@@ -58,8 +58,16 @@ PPT源文件下载位置：<http://web.stanford.edu/class/cs231a/syllabus.html>
 + <https://people.computing.clemson.edu/~dhouse/courses/401/>
 + <https://people.computing.clemson.edu/~dhouse/courses/401/notes/>
 
+## 2.5 [Coursera] Neural Networks for Machine Learning — Geoffrey hinton
++ youtube: <https://www.youtube.com/playlist?list=PLoRl3Ht4JOcdU872GhiYWf6jwrk_SNhz9>
++ b站：<https://www.bilibili.com/video/BV1n64y117t7>
++ PPT位置：<https://www.cs.toronto.edu/~hinton/coursera_slides.html>
+    + 有pptx格式，也有pdf格式
++ 作业：
+    + <https://github.com/bondeanikets/Geoffrey-Hinton-Neural-Networks-for-Machine-Learning/tree/master>
+    + <https://github.com/AlessandroCorradini/University-of-Toronto-Neural-Networks-for-Machine-Learning>
 
-## 2.5 大牛
+## 2.6 大牛
 + (吴恩达)神经网络和深度学习：<https://study.163.com/instructor/1029176012.htm>
 + Lecun：<https://cds.nyu.edu/deep-learning/>
 + 刘建平：<https://www.cnblogs.com/pinard/?page=14>，这个人和冠军如何练成的，两个博客大佬啊。
