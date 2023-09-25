@@ -1,4 +1,3 @@
-from builtins import range
 import numpy as np
 
 
@@ -13,7 +12,8 @@ def affine_forward(x, w, b):
 
     Inputs:
     - x: A numpy array containing input data, of shape (N, d_1, ..., d_k)
-    - w: A numpy array of weights, of shape (D, M)
+         输入是minibatch为n的一个多维numpy array,可以是任意维度
+    - w: A numpy array of weights, of shape (D, M), D = d_1 * ... * d_k
     - b: A numpy array of biases, of shape (M,)
 
     Returns a tuple of:
@@ -25,10 +25,8 @@ def affine_forward(x, w, b):
     # TODO: Implement the affine forward pass. Store the result in out. You   #
     # will need to reshape the input into rows.                               #
     ###########################################################################
-    pass
-    ###########################################################################
-    #                             END OF YOUR CODE                            #
-    ###########################################################################
+    x_res = x.reshape((x.shape[0], -1))
+    out = np.dot(x_res, w)+b
     cache = (x, w, b)
     return out, cache
 
@@ -39,24 +37,37 @@ def affine_backward(dout, cache):
 
     Inputs:
     - dout: Upstream derivative, of shape (N, M)
+      注意,(N,M)并不一定表示的是最后损失函数那层的输出,在这里就是这个FC层的输出,
+      上面的注释: out: output, of shape (N, M), 则上面对这个输出求导得到的结果却是就是(N,M)的shape
+         input                    w                          output
+      (N,d1,...,d_k)    (D,M) D=d1*d2...*d_k                 (N,M)
+  dx.shape=input.shape     dw.shape=w.shape    (Upstream derivative)dout.shape=output.shape  
+
+      y1=w1x+b
+      y2=w2y1+b 则 w1对y2的导(△w1/y2) = w2(y2/y1的导) * x, △x/y2= w2* w1, △b/y2=w2*1
     - cache: Tuple of:
       - x: Input data, of shape (N, d_1, ... d_k)
       - w: Weights, of shape (D, M)
 
     Returns a tuple of:
     - dx: Gradient with respect to x, of shape (N, d1, ..., d_k)
+          其实这里有个问题,不会对dx进行更新,为什么要求dx的导数???
     - dw: Gradient with respect to w, of shape (D, M)
     - db: Gradient with respect to b, of shape (M,)
     """
     x, w, b = cache
+    N = x.shape[0]
     dx, dw, db = None, None, None
     ###########################################################################
     # TODO: Implement the affine backward pass.                               #
     ###########################################################################
-    pass
-    ###########################################################################
-    #                             END OF YOUR CODE                            #
-    ###########################################################################
+    dw = np.dot(x.reshape((N, -1)).T, dout)
+    db = np.sum(dout, axis=0)
+    dx = np.dot(dout, w.T).reshape(x.shape)
+    # w_D_expand = np.expand_dims(w_D, axis=0)
+    # dx = np.tile(w_D, (N,))
+    # dx = np.repeat(w_D_expand, N, axis=0)
+
     return dx, dw, db
 
 
